@@ -51,6 +51,11 @@ brands <- read_csv("brands.csv")
 brands %>% summarise_all(funs(sum(is.na(.))))
 ```
 
+```{r}
+nrow(brands) == nrow(distinct(brands))
+```
+
+There aren't any duplicates in the brands dataset.
 
 ## Receipts
 
@@ -60,3 +65,8 @@ receipts <- read_csv("receipts.csv")
 receipts %>% summarise_all(funs(sum(is.na(.))))
 ```
 
+```{r}
+nrow(receipts) == nrow(distinct(receipts))
+```
+
+There aren't any duplicates in the receipts dataset. 
