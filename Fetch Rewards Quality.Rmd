@@ -1,0 +1,62 @@
+---
+title: "Fetch Rewards Quality"
+author: "Xavier Genelin"
+date: "10/6/2021"
+output: pdf_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+## Users
+
+The two main issues with any data set can be either missing values or duplicated values. We'll check those for each dataset.
+
+
+```{r}
+# load the csv created for the users data
+users <- read_csv("users.csv")
+
+# count the NA values per column
+users %>% summarise_all(funs(sum(is.na(.))))
+```
+
+```{r}
+# see if there are any duplicated values
+nrow(users) == nrow(distinct(users))
+```
+
+There are duplicated values in the users dataset. The below code will calculate how many extra rows there are in the users dataset.
+
+```{r}
+nrow(users) - nrow(distinct(users))
+```
+
+
+After viewing the dataset, there looked to be a few barcodes in the brand code column. We can check to see if these are the same as the barcode in the row.
+
+```{r}
+barcodeBrandSame <- brands %>% filter(barcode == brandCode) 
+nrow(barcodeBrandSame)
+```
+
+There are 54 entries where the barcode is the same as the brand code, this seems to be an issue with how some of the other values for brand code are set up. If this is manual, it could just be a user error. If not, something with the system may be acting up.
+## Brands
+
+```{r}
+brands <- read_csv("brands.csv")
+
+brands %>% summarise_all(funs(sum(is.na(.))))
+```
+
+
+## Receipts
+
+```{r}
+receipts <- read_csv("receipts.csv")
+
+receipts %>% summarise_all(funs(sum(is.na(.))))
+```
+
