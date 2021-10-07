@@ -1,6 +1,6 @@
 # Fetch-Rewards-Assessment
 
-This file contains answers to the Fetch Rewards Assessment or points to the files that will have the answers necessary. I haven't worked with a .json file before, the jupyter notebook code is how I converted this into something that was usable to my current knowledge for checking the data for quality issues as well as getting something that I can use for a SQL query. That code is in the JSON to dataframes.jpynb file. 
+This file contains answers to the Fetch Rewards Assessment or points to the files that will have the answers necessary. I haven't worked with a .json file before, the jupyter notebook code is how I converted this into something that was usable to my current knowledge for checking the data for quality issues as well as getting something that I can use for a SQL query. That code is in the JSON to dataframes.jpynb file. The csv files that were created from the python code are attached to this repo as well and were used in the .Rmd file. 
 
 ## Part 1
 The image within this repo has what I believe the relational diagram would look like (Fetch Assesment part 1.jpg)
