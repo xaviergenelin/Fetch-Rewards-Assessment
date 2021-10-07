@@ -43,6 +43,7 @@ nrow(barcodeBrandSame)
 ```
 
 There are 54 entries where the barcode is the same as the brand code, this seems to be an issue with how some of the other values for brand code are set up. If this is manual, it could just be a user error. If not, something with the system may be acting up.
+
 ## Brands
 
 ```{r}
@@ -60,6 +61,7 @@ There aren't any duplicates in the brands dataset.
 ## Receipts
 
 ```{r}
+# load in the data from the csv
 receipts <- read_csv("receipts.csv")
 
 receipts %>% summarise_all(funs(sum(is.na(.))))
@@ -70,3 +72,30 @@ nrow(receipts) == nrow(distinct(receipts))
 ```
 
 There aren't any duplicates in the receipts dataset. 
+
+The next chunks of code will create boxplots to see if there are any outliers and how severe of outliers they may be. 
+
+```{r}
+ggplot(receipts, aes(x = pointsEarned)) + 
+  geom_boxplot() + 
+  labs(title = "Boxplot of Points Earned")
+```
+
+There are a lot of outliers in the points earned, this could be a potential error with points earned being near 10,000 for the higest ones when a large majority have a low amount of points. 
+
+```{r}
+ggplot(receipts, aes(x = bonusPointsEarned)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Bonus Points Earned")
+```
+
+Nothing that looks concerning about this. The range seems a little large for them being bonus points, but nothing from this graph looks like there is anything alarming that may be a data error. 
+
+```{r}
+ggplot(receipts, aes(x = purchasedItemCount)) + 
+  geom_boxplot() + 
+  labs(title = "Boxplot of Purchased item Count")
+
+```
+
+Similar to what we saw in the points earned graph, there are a lot of outliers in this and the large majority of items purchased is very small. 
